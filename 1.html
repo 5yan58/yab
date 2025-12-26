@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>乙游 - 动态博客</title>
+    <link rel="stylesheet" href="1.css">
+</head>
+<body>
+    <!-- 粒子背景 -->
+    <div class="particles" id="particles"></div>
+    
+    <!-- 左侧边栏 -->
+    <div class="sidebar left-sidebar">
+        <div class="sidebar-item">
+            <div class="sidebar-icon">❤️</div>
+            <div class="tooltip">收藏文章</div>
+        </div>
+        <div class="sidebar-item" id="bookListBtn">
+            <div class="sidebar-icon">📚</div>
+            <div class="tooltip">我的书单</div>
+        </div>
+        <div class="sidebar-item" id="musicBtn">
+            <div class="sidebar-icon">🎵</div>
+            <div class="tooltip">背景音乐</div>
+        </div>
+        <div class="sidebar-item">
+            <div class="sidebar-icon">🌙</div>
+            <div class="tooltip">夜间模式</div>
+        </div>
+    </div>
+    
+    <!-- 右侧边栏 -->
+    <div class="sidebar right-sidebar">
+        <div class="sidebar-item">
+            <div class="sidebar-icon">🔍</div>
+            <div class="tooltip">搜索内容</div>
+        </div>
+        <div class="sidebar-item">
+            <div class="sidebar-icon">📱</div>
+            <div class="tooltip">分享页面</div>
+        </div>
+        <div class="sidebar-item" id="commentBtn">
+            <div class="sidebar-icon">💬</div>
+            <div class="tooltip">留言评论</div>
+        </div>
+        <div class="sidebar-item">
+            <div class="sidebar-icon">⬆️</div>
+            <div class="tooltip">回到顶部</div>
+        </div>
+    </div>
+
+    <!-- 书单弹窗 -->
+    <div id="bookListModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>📖 我的书单</h2>
+            <div class="book-list">
+                <div class="book-item">
+                    <div class="book-cover">书</div>
+                    <div class="book-info">
+                        <h3>《乙女游戏设计指南》</h3>
+                        <p>作者：无</p>
+                        <div class="book-progress">
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 75%"></div>
+                            </div>
+                            <span>75% 已读</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="book-item">
+                    <div class="book-cover">漫</div>
+                    <div class="book-info">
+                        <h3>《恐怖游戏逃生》</h3>
+                        <p>作者：无</p>
+                        <div class="book-progress">
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 40%"></div>
+                            </div>
+                            <span>40% 已读</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="book-item">
+                    <div class="book-cover">设</div>
+                    <div class="book-info">
+                        <h3>《角色设计艺术》</h3>
+                        <p>作者：无</p>
+                        <div class="book-progress">
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 90%"></div>
+                            </div>
+                            <span>90% 已读</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 音乐播放器 -->
+    <div id="musicPlayer" class="music-player">
+        <div class="player-header">
+            <span>🎵 正在播放</span>
+            <button id="closeMusic" class="close-btn">×</button>
+        </div>
+        <div class="player-content">
+            <div class="music-info">
+                <div class="music-cover">♪</div>
+                <div class="music-details">
+                    <h3>校园时光</h3>
+                </div>
+            </div>
+            <div class="player-controls">
+                <button id="prevBtn">⏮</button>
+                <button id="playBtn">▶️</button>
+                <button id="nextBtn">⏭</button>
+            </div>
+            <div class="volume-control">
+                <span>音量:</span>
+                <input type="range" id="volumeSlider" min="0" max="100" value="50">
+            </div>
+        </div>
+    </div>
+
+    <!-- 留言板 -->
+    <div id="commentModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>💬 留言板</h2>
+            <div class="comment-form">
+                <textarea id="commentInput" placeholder="写下你的留言..."></textarea>
+                <button id="submitComment">发布留言</button>
+            </div>
+            <div class="comments-list">
+                <div class="comment-item">
+                    <div class="comment-avatar">访</div>
+                    <div class="comment-content">
+                        <h4>游客小明</h4>
+                        <p>莫奕这个角色真的很棒！期待更多故事！</p>
+                        <span class="comment-time">2小时前</span>
+                    </div>
+                </div>
+                <div class="comment-item">
+                    <div class="comment-avatar">小</div>
+                    <div class="comment-content">
+                        <h4>4399</h4>
+                        <p>校园生活的描写很真实，让我想起了自己的学生时代。</p>
+                        <span class="comment-time">1天前</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 主要内容 -->
+    <div class="container">
+        <header>
+            <h1>我的博客</h1>
+        </header>
+        
+        <div class="content">
+            <section class="section">
+                <h2>我喜欢的人物</h2>
+                <div class="character">
+                    <div class="character-avatar">乙游</div>
+                    <div class="character-info">
+                        <h3>莫奕</h3>
+                        <p>一个充满魅力的角色，有着独特的性格和故事背景。</p>
+                        <a href="#" class="read-more">阅读更多</a>
+                    </div>
+                </div>
+                
+                <!-- 图片展示区域 -->
+                <div class="image-gallery">
+                    <div class="gallery-item">
+                        <img src="https://ts1.tc.mm.bing.net/th/id/OIP-C.DyeqSb6pZeA1r41xKttMywHaDf?w=240&h=128&c=8&rs=1&qlt=90&o=6&cb=ucfimgc1&dpr=1.3&pid=3.1&rm=2" alt="角色图片1" class="gallery-img">
+                        <div class="img-overlay">
+                            <h4>莫奕 - 日常</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://ts1.tc.mm.bing.net/th/id/OIP-C.w4LAUqyId9O8OT7v7AmRwAHaDg?w=238&h=128&c=8&rs=1&qlt=90&o=6&cb=ucfimgc1&dpr=1.3&pid=3.1&rm=2" alt="角色图片2" class="gallery-img">
+                        <div class="img-overlay">
+                            <h4>莫奕 - 古风</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://tse4-mm.cn.bing.net/th/id/OIP-C.D-mLcvC8kOUDkHDJUiU0EwAAAA?w=161&h=349&c=7&r=0&o=7&cb=ucfimgc2&dpr=1.3&pid=1.7&rm=3" alt="角色图片3" class="gallery-img">
+                        <div class="img-overlay">
+                            <h4>莫奕 - 小时候</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="https://tse2-mm.cn.bing.net/th/id/OIP-C.VzXZGy0f1UZRxRRqeN2YiQHaNG?w=187&h=332&c=7&r=0&o=7&cb=ucfimgc2&dpr=1.3&pid=1.7&rm=3" alt="角色图片4" class="gallery-img">
+                        <div class="img-overlay">
+                            <h4>莫奕 - 特写</h4>
+                            <p>角色细节特写</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            
+            <section class="section">
+                <h2>校园生活</h2>
+                <p>繁忙而愉快的日常</p>
+                <div class="image-gallery">
+                    <div class="gallery-item">
+                        <img src="C:\Users\HP\Pictures\微信图片_20251113132811_75_417.jpg" alt="校园生活1" class="gallery-img">
+                        <div class="img-overlay">
+                            <h4>蛋糕</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="C:\Users\HP\Pictures\微信图片_20251113132813_76_417.jpg" alt="校园生活2" class="gallery-img">
+                        <div class="img-overlay">
+                            <h4>劳动课</h4>
+                            <p>丰富多彩的生活</p>
+                        </div>
+                        </div>
+                    <div class="gallery-item">
+                        <img src="C:\Users\HP\Pictures\微信图片_20251113151347_83_417.jpg" alt="校园生活2" class="gallery-img">
+                        <div class="img-overlay">
+                            <h4>路上趣事</h4>
+                        </div>
+                        </div>
+                    <div class="gallery-item">
+                        <img src="C:\Users\HP\Pictures\微信图片_20251113151352_87_417.jpg" alt="校园生活2" class="gallery-img">
+                        <div class="img-overlay">
+                            <h4>宿舍生活</h4>
+                        </div>
+                    </div>
+                </div>
+            </section>
+<section class="section">
+                <h2>上课中</h2>
+                <div class="image-gallery">
+                    <div class="gallery-item">
+                        <img src="C:\Users\HP\Desktop\截屏\屏幕截图 2025-12-26 200508.png" alt="校园生活1" class="gallery-img">
+                        <div class="img-overlay">
+                            <h4>web</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="C:\Users\HP\Desktop\截屏\屏幕截图 2025-12-24 110125.png" alt="校园生活2" class="gallery-img">
+                        <div class="img-overlay">
+                            <h4>python</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="C:\Users\HP\Pictures\微信图片_20251113151349_84_417.jpg" alt="校园生活2" class="gallery-img">
+                        <div class="img-overlay">
+                            <h4>英语</h4>
+                        </div>
+                    </div>
+                </div>
+            </section>
+<section class="section">
+                <h2>出游</h2>
+                <div class="image-gallery">
+                    <div class="gallery-item">
+                        <img src="C:\Users\HP\Pictures\微信图片_20251113151344_80_417.jpg" alt="出游1" class="gallery-img">
+                        <div class="img-overlay">
+                            <h4>游乐园</h4>
+                        </div>
+                    </div>
+                    <div class="gallery-item">
+                        <img src="C:\Users\HP\Pictures\微信图片_20251113151346_82_417.jpg" alt="出游2" class="gallery-img">
+                        <div class="img-overlay">
+                            <h4>漂亮饭</h4>
+                        </div>
+                         </div>
+                    <div class="gallery-item">
+                        <img src="C:\Users\HP\Pictures\微信图片_20251113151351_86_417.jpg" alt="出游3" class="gallery-img">
+                        <div class="img-overlay">
+                            <h4>谷子</h4>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+
+            <section class="section">
+                <h2>文章分类</h2>
+                <div class="categories">
+                    <div class="category">技术思考</div>
+                    <div class="category">生活随笔</div>
+                    <div class="category">阅读笔记</div>
+                    <div class="category">设计分享</div>
+                    <div class="category">标签云</div>
+                </div>
+            </section>
+    <script src="1.js"></script>
+</body>
+</html>
